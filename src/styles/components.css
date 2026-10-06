@@ -1,0 +1,163 @@
+/* ============ component classes (layered so Tailwind utilities can override) ============ */
+@layer components {
+.display{ font-family:'Space Grotesk','Noto Sans Khmer',sans-serif; letter-spacing:-.02em; }
+html.km .display{ letter-spacing:0; }
+.mono-num{ font-variant-numeric:tabular-nums; font-feature-settings:"tnum","lnum"; letter-spacing:0; }
+.stat-num{ font-family:'Space Grotesk','Inter',sans-serif; font-size:27px; font-weight:600; line-height:1.1;
+  letter-spacing:-.01em; font-variant-numeric:tabular-nums; font-feature-settings:"tnum","lnum";
+  color:var(--text); white-space:nowrap; }
+.eyebrow{ font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--label); font-weight:500; }
+.muted{ color:var(--text-2); } .muted-2{ color:var(--text-3); }
+.surface{ background:var(--bg); } .soft{ background:var(--soft); } .panel-bg{ background:var(--panel); }
+.hair{ border:1px solid var(--line); } .hair-b{ border-bottom:1px solid var(--line); } .hair-t{ border-top:1px solid var(--line); }
+.hair-r{ border-right:1px solid var(--line); } .hair-l{ border-left:1px solid var(--line); }
+.card{ background:var(--panel); border:1px solid var(--line); border-radius:4px; }
+.card-soft{ background:var(--panel); border:1px solid var(--line); border-radius:4px; box-shadow:var(--shadow); }
+.accent{ color:var(--accent); } .accent-bg{ background:var(--accent); color:#fff; }
+
+/* buttons */
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:.5rem; font-weight:500; border-radius:3px;
+  transition:all .18s ease; white-space:nowrap; border:1px solid transparent; cursor:pointer; letter-spacing:.01em; }
+.btn:disabled{ opacity:.45; cursor:not-allowed; }
+.btn-md{ height:44px; padding:0 1.25rem; font-size:14px; } .btn-sm{ height:34px; padding:0 .85rem; font-size:13px; }
+.btn-lg{ height:52px; padding:0 1.75rem; font-size:14px; letter-spacing:.08em; text-transform:uppercase; }
+.btn-primary{ background:var(--text); color:var(--bg); } .btn-primary:hover{ opacity:.85; }
+.btn-secondary{ background:transparent; color:var(--text); border-color:var(--line-strong); } .btn-secondary:hover{ background:var(--text); color:var(--bg); }
+.btn-ghost{ background:transparent; color:var(--text-2); } .btn-ghost:hover{ background:var(--soft); color:var(--text); }
+.btn-accent{ background:var(--accent); color:#fff; } .btn-accent:hover{ filter:brightness(1.08); }
+.btn-danger{ background:transparent; color:#D92D20; border-color:rgba(217,45,32,.4); } .btn-danger:hover{ background:#D92D20; color:#fff; }
+.btn-icon{ width:38px; height:38px; padding:0; border-radius:3px; display:inline-flex; align-items:center; justify-content:center; color:var(--text-2); transition:.18s; }
+.btn-icon:hover{ background:var(--soft); color:var(--text); }
+
+/* inputs */
+.field{ width:100%; height:44px; background:var(--panel); border:1px solid var(--line); border-radius:3px; padding:0 .85rem; color:var(--text); font-size:14px; transition:.16s; outline:none; }
+textarea.field{ height:auto; padding:.7rem .85rem; line-height:1.6; }
+.field::placeholder{ color:var(--text-3); }
+.field:focus{ border-color:var(--text); box-shadow:0 0 0 3px rgba(12,12,13,.07); }
+html.dark .field:focus{ box-shadow:0 0 0 3px rgba(255,255,255,.08); }
+.field.has-icon{ padding-left:2.4rem; }
+.field.is-error{ border-color:#D92D20; } .field.is-ok{ border-color:var(--ok); }
+.lbl{ display:block; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--label); margin-bottom:.45rem; font-weight:500; }
+select.field{ appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238A8A90' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right .8rem center; padding-right:2.2rem; }
+
+/* misc */
+.link-u{ position:relative; }
+.link-u::after{ content:''; position:absolute; left:0; bottom:-3px; height:1px; width:0; background:currentColor; transition:width .25s ease; }
+.link-u:hover::after, .link-u.router-link-active::after{ width:100%; }
+.img-zoom{ overflow:hidden; } .img-zoom img{ transition:transform .7s cubic-bezier(.2,.7,.3,1); } .img-zoom:hover img{ transform:scale(1.045); }
+.scroll-thin::-webkit-scrollbar{ width:6px; height:6px; } .scroll-thin::-webkit-scrollbar-thumb{ background:var(--line); border-radius:9px; }
+.no-bar::-webkit-scrollbar{ display:none; }
+.sk{ position:relative; overflow:hidden; background:var(--soft); }
+.sk::after{ content:''; position:absolute; inset:0; transform:translateX(-100%); background:linear-gradient(90deg,transparent,rgba(128,128,128,.14),transparent); animation:sh 1.3s infinite; }
+@keyframes sh{ 100%{ transform:translateX(100%); } }
+.ratio-p{ aspect-ratio:3/4; } .ratio-s{ aspect-ratio:1/1; }
+
+/* tables */
+table.dt{ border-collapse:separate; border-spacing:0; }
+table.dt th{ font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-3); font-weight:500; text-align:left; padding:.85rem 1rem; background:var(--panel-2); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:5; }
+table.dt td{ padding:.85rem 1rem; border-bottom:1px solid var(--line); vertical-align:middle; }
+table.dt tbody tr{ transition:background .15s; } table.dt tbody tr:hover{ background:var(--panel-2); }
+.tab{ padding:.6rem 0; font-size:13px; color:var(--text-3); border-bottom:2px solid transparent; transition:.18s; white-space:nowrap; }
+.tab.active{ color:var(--text); border-color:var(--text); }
+
+/* chips — softly rounded to match cards (not pills) */
+.chip{ display:inline-flex; align-items:center; gap:.4rem; height:34px; padding:0 .8rem;
+  border:1px solid var(--line); border-radius:6px; font-size:12.5px; color:var(--text-2);
+  background:var(--panel); transition:border-color .18s ease, color .18s ease, background .18s ease; cursor:pointer; }
+.chip:hover{ border-color:var(--line-strong); color:var(--text); }
+.chip.on{ background:var(--text); color:var(--bg); border-color:var(--text); }
+.chip-clear{ display:inline-flex; align-items:center; gap:.4rem; height:34px; padding:0 .85rem;
+  border:1px solid var(--line); border-radius:6px; font-size:12px; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--text-2); background:transparent; transition:.18s; cursor:pointer; }
+.chip-clear:hover{ border-color:#D92D20; color:#D92D20; }
+
+/* selectors */
+.sw{ width:32px; height:32px; border-radius:50%; border:1px solid var(--line); position:relative;
+  transition:box-shadow .2s ease, transform .2s ease, border-color .2s ease; }
+.sw:hover{ transform:translateY(-1px); border-color:var(--line-strong); }
+.sw.on{ box-shadow:0 0 0 2px var(--bg), 0 0 0 3.5px var(--text); }
+html.dark .sw{ border-color:#3F3F46; } html.dark .sw:hover{ border-color:#71717A; }
+.size-box{ min-width:50px; height:44px; padding:0 .85rem; border:1px solid var(--line); font-size:13px; font-weight:500;
+  display:inline-flex; align-items:center; justify-content:center; border-radius:3px; color:var(--text-2);
+  transition:border-color .2s ease, background .2s ease, color .2s ease, transform .2s ease; }
+.size-box:hover{ border-color:var(--line-strong); color:var(--text); transform:translateY(-1px); }
+.size-box.on{ background:var(--text); color:var(--bg); border-color:var(--text); }
+.size-box.off{ opacity:.35; text-decoration:line-through; cursor:not-allowed; }
+html.dark .size-box{ border-color:#3F3F46; } html.dark .size-box:hover{ border-color:#71717A; }
+
+.hero-title{ font-family:'Space Grotesk','Noto Sans Khmer',sans-serif; font-weight:700; text-transform:uppercase;
+  font-size:clamp(34px,6.4vw,58px); line-height:1.02; letter-spacing:0; color:var(--text); }
+html.km .hero-title{ line-height:1.35; font-size:clamp(28px,5.4vw,46px); }
+.focus-ring:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+
+/* ---- KHQR ticket : mirrors the official NBC / Bakong payment card ---- */
+.khqr-card{ --kh-red:#E21A23; background:#FFFFFF; border-radius:14px; width:100%; max-width:330px;
+  box-shadow:0 2px 4px rgba(16,16,20,.05), 0 18px 44px -20px rgba(16,16,20,.34);
+  border:1px solid rgba(0,0,0,.06); overflow:hidden; position:relative; }
+html.dark .khqr-card{ border-color:rgba(255,255,255,.1); box-shadow:0 18px 48px -18px rgba(0,0,0,.8); }
+.khqr-head{ background:var(--kh-red); padding:15px 20px 17px; display:flex; align-items:center;
+  justify-content:space-between; position:relative; }
+.khqr-head::after{ content:''; position:absolute; left:0; right:0; bottom:-1px; height:14px; background:#fff;
+  clip-path:polygon(0 100%, 100% 0, 100% 100%); }
+.khqr-logo{ color:#fff; font-weight:800; font-size:17px; letter-spacing:.06em; font-family:'Space Grotesk',sans-serif; line-height:1; }
+.khqr-head-sub{ color:rgba(255,255,255,.92); font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; font-weight:500; }
+.khqr-perf{ position:relative; height:0; border-top:1.5px dashed #DCDCD8; margin:0 16px; }
+.khqr-notch{ position:absolute; top:-11px; width:22px; height:22px; border-radius:50%;
+  background:var(--bg); box-shadow:inset 0 0 0 1px rgba(0,0,0,.05); }
+.khqr-notch.left{ left:-27px; } .khqr-notch.right{ right:-27px; }
+.khqr-frame{ position:relative; padding:12px; border-radius:10px; background:#fff; }
+.khqr-frame::before, .khqr-frame::after,
+.khqr-frame > .kc1, .khqr-frame > .kc2{ content:''; position:absolute; width:20px; height:20px;
+  border:2.5px solid var(--kh-red); border-radius:3px; }
+.khqr-frame::before{ top:0; left:0; border-right:0; border-bottom:0; }
+.khqr-frame::after{ top:0; right:0; border-left:0; border-bottom:0; }
+.khqr-frame > .kc1{ bottom:0; left:0; border-right:0; border-top:0; }
+.khqr-frame > .kc2{ bottom:0; right:0; border-left:0; border-top:0; }
+.khqr-amt{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:32px; line-height:1;
+  color:#111; font-variant-numeric:tabular-nums; letter-spacing:-.01em; }
+.khqr-btn{ width:100%; height:46px; border-radius:8px; background:#111; color:#fff; font-size:13.5px; font-weight:600;
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem; transition:.18s; cursor:pointer; border:0; }
+.khqr-btn:hover:not(:disabled){ background:#000; transform:translateY(-1px); box-shadow:0 6px 16px -6px rgba(0,0,0,.5); }
+.khqr-btn:disabled{ opacity:.4; cursor:not-allowed; }
+.khqr-spin{ width:15px; height:15px; border:2px solid rgba(255,255,255,.35); border-top-color:#fff; border-radius:50%;
+  display:inline-block; animation:khspin .7s linear infinite; }
+@keyframes khspin{ to{ transform:rotate(360deg); } }
+@media (max-width:380px){ .khqr-card{ max-width:100%; } .khqr-amt{ font-size:27px; } }
+
+/* ---- receipt / barcode ---- */
+.receipt-sheet{ background:var(--panel); }
+.barcode-wrap svg{ width:100%; height:auto; }
+html.dark .barcode-wrap{ background:#fff; padding:10px 12px; border-radius:3px; }
+
+/* ---- Shop: sticky filter sidebar ---- */
+.shop-layout{ display:grid; grid-template-columns:1fr; gap:2.5rem; align-items:start; }
+@media (min-width:1024px){
+  .shop-layout{ grid-template-columns:240px minmax(0,1fr); }
+  .filter-sidebar{ position:sticky; top:90px; align-self:flex-start; height:fit-content;
+    max-height:calc(100vh - 110px); overflow-y:auto; overscroll-behavior:contain; padding-right:6px; }
+}
+html.nav-small .filter-sidebar{ top:78px; }
+
+/* sticky column offset tracks the live navbar height */
+@media (max-width:1023px){ :root{ --nav-h:64px; } }
+html.nav-small{ --nav-h:64px; }
+.sticky-col{ position:static; }
+@media (min-width:1024px){ .sticky-col{ position:sticky; top:calc(var(--nav-h) + 24px); align-self:start; } }
+
+/* ---- responsive guards ---- */
+img, svg, canvas, video{ max-width:100%; height:auto; }
+table{ max-width:100%; }
+.break-anywhere{ overflow-wrap:anywhere; word-break:break-word; }
+p, h1, h2, h3, h4, span, td, th, a{ overflow-wrap:break-word; }
+@media (max-width:480px){
+  .btn-lg{ height:48px; padding:0 1rem; font-size:12.5px; letter-spacing:.05em; }
+  .btn-md{ height:42px; padding:0 .9rem; }
+  .size-box{ min-width:44px; height:42px; padding:0 .6rem; }
+  .chip, .chip-clear{ height:32px; padding:0 .7rem; font-size:12px; }
+  .card, .card-soft{ border-radius:6px; }
+  .eyebrow{ letter-spacing:.12em; }
+  table.dt th, table.dt td{ padding:.7rem .75rem; }
+}
+.marquee{ display:flex; gap:3rem; animation:mq 26s linear infinite; white-space:nowrap; }
+@keyframes mq{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+}

@@ -1,0 +1,59 @@
+@import "tailwindcss";
+@import "./components.css";
+
+/* ============ design tokens ============ */
+:root{
+  --bg:#FFFFFF; --soft:#F5F5F4; --panel:#FFFFFF; --panel-2:#FAFAF9;
+  --line:#E7E6E3; --line-strong:#111111;
+  --text:#0C0C0D; --text-2:#55555A; --text-3:#78787F; --label:#6B6B73;
+  --nav-bg:rgba(255,255,255,.9); --nav-h:76px;
+  --accent:#E8452C; --accent-soft:#FDECE8;
+  --ok:#16794C; --ok-soft:#E7F4ED; --warn:#9A6400; --warn-soft:#FBF2E0; --info:#1F4FD8; --info-soft:#EAEFFD;
+  --shadow:0 1px 2px rgba(16,16,20,.04), 0 8px 24px -12px rgba(16,16,20,.12);
+}
+html.dark{
+  --bg:#0A0A0B; --soft:#111113; --panel:#131315; --panel-2:#17171A;
+  --line:#262629; --line-strong:#3A3A3F;
+  --text:#F2F2F0; --text-2:#C4C4CA; --text-3:#A1A1AA; --label:#D4D4D8;
+  --nav-bg:rgba(18,18,18,.9);
+  --accent:#FF5A3C; --accent-soft:#2A1511;
+  --ok:#4ADE97; --ok-soft:#10231A; --warn:#E9B949; --warn-soft:#241D0D; --info:#7FA2FF; --info-soft:#121A30;
+  --shadow:0 1px 2px rgba(0,0,0,.5), 0 10px 30px -16px rgba(0,0,0,.7);
+}
+
+/* ============ base ============ */
+*{ -webkit-tap-highlight-color:transparent; }
+/* overflow-x:hidden on html/body creates a scroll container which BREAKS position:sticky.
+   `clip` hides horizontal overflow without creating one, so the navbar stays sticky. */
+html,body{ max-width:100%; overflow-x:clip; }
+@supports not (overflow:clip){ html,body{ overflow-x:hidden; } }
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion:reduce){ html{ scroll-behavior:auto; } }
+body{ background:var(--bg); color:var(--text); font-family:'Inter','Noto Sans Khmer',system-ui,sans-serif; -webkit-font-smoothing:antialiased; font-size:15px; }
+/* Khmer glyphs fall back to Noto Sans Khmer automatically — no font-family swap on switch */
+html.km body{ line-height:1.7; }
+html.km .eyebrow, html.km .lbl{ letter-spacing:.06em; }
+#app{ transition:opacity .18s ease; }
+html.lang-switching #app{ opacity:.3; }
+
+/* ============ transitions ============ */
+.fade-enter-active,.fade-leave-active{ transition:opacity .22s ease; } .fade-enter-from,.fade-leave-to{ opacity:0; }
+.page-enter-active{ transition:opacity .3s ease, transform .3s ease; } .page-enter-from{ opacity:0; transform:translateY(8px); }
+.pop-enter-active{ transition:all .2s cubic-bezier(.2,.8,.3,1); } .pop-leave-active{ transition:all .15s ease; }
+.pop-enter-from,.pop-leave-to{ opacity:0; transform:translateY(6px) scale(.98); }
+.slide-r-enter-active,.slide-r-leave-active{ transition:transform .3s cubic-bezier(.3,.8,.3,1); } .slide-r-enter-from,.slide-r-leave-to{ transform:translateX(100%); }
+.slide-l-enter-active,.slide-l-leave-active{ transition:transform .3s cubic-bezier(.3,.8,.3,1); } .slide-l-enter-from,.slide-l-leave-to{ transform:translateX(-100%); }
+.toast-enter-active,.toast-leave-active{ transition:all .25s ease; } .toast-enter-from,.toast-leave-to{ opacity:0; transform:translateY(-10px); }
+.ann-enter-active,.ann-leave-active{ transition:opacity .45s ease, transform .45s cubic-bezier(.3,.8,.3,1); }
+.ann-enter-from{ opacity:0; transform:translateY(8px); } .ann-leave-to{ opacity:0; transform:translateY(-8px); }
+
+/* ============ print ============ */
+@media print{
+  @page{ margin:10mm; }
+  body{ background:#fff !important; }
+  header, footer, aside, .no-print, .btn, nav{ display:none !important; }
+  .receipt-sheet{ box-shadow:none !important; border:none !important; max-width:100% !important; margin:0 auto; }
+  .receipt-sheet *{ color:#000 !important; }
+  .barcode-wrap{ background:#fff !important; padding:0 !important; }
+  main{ overflow:visible !important; }
+}
